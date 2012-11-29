@@ -1,8 +1,25 @@
 class CBMSaleList extends KFGui.KFBuyMenuSaleList;
 
+var class<KFVeterancyTypes> PlayerVeterancy;
+
+event Opened(GUIComponent Sender)
+{
+	super(GUIVertList).Opened(Sender);
+	// Grab Players Veterancy for quick reference
+	if ( KFPlayerController(PlayerOwner()) != none && KFPlayerReplicationInfo(PlayerOwner().PlayerReplicationInfo).ClientVeteranSkill != none )
+	{
+		PlayerVeterancy = KFPlayerReplicationInfo(PlayerOwner().PlayerReplicationInfo).ClientVeteranSkill;
+	}
+	else
+	{
+		PlayerVeterancy = class'KFVeterancyTypes';
+	}
+
+	UpdateForSaleBuyables();
+}
+
 function UpdateForSaleBuyables()
 {
-	local class<KFVeterancyTypes> PlayerVeterancy;
     local KFPlayerReplicationInfo KFPRI;
 	local KFLevelRules KFLR, KFLRit;
 	local GUIBuyable ForSaleBuyable;
@@ -19,15 +36,6 @@ function UpdateForSaleBuyables()
         Break;
 	}
 
-	// Grab Players Veterancy for quick reference
-	if ( KFPlayerController(PlayerOwner()) != none && KFPlayerReplicationInfo(PlayerOwner().PlayerReplicationInfo).ClientVeteranSkill != none )
-	{
-		PlayerVeterancy = KFPlayerReplicationInfo(PlayerOwner().PlayerReplicationInfo).ClientVeteranSkill;
-	}
-	else
-	{
-		PlayerVeterancy = class'KFVeterancyTypes';
-	}
 
 	KFPRI = KFPlayerReplicationInfo(PlayerOwner().PlayerReplicationInfo);
 
