@@ -9,7 +9,7 @@ function InitTabs()
 	{
 		panel= c_Tabs.AddTab(PanelCaption[i], PanelClass[i],, PanelHint[i]);
         if (i == 0) {
-            PerkFilter(QuickPerkSelect).listRef= CBMSaleList(BuyMenuTab(panel).SaleSelect.List);
+            WeaponFilter(QuickPerkSelect).listRef= CBMSaleList(BuyMenuTab(panel).SaleSelect.List);
         }
 	}
 }
@@ -19,7 +19,7 @@ defaultproperties {
 
     HeaderBG_Left_Label= None
 
-    Begin Object class=PerkFilter Name=QS
+    Begin Object class=WeaponFilter Name=QS
 		WinTop=0.011906
 		WinLeft=0.008008
 		WinWidth=0.316601

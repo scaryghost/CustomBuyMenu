@@ -1,4 +1,4 @@
-class PerkFilter extends KFGui.KFQuickPerkSelect;
+class WeaponFilter extends KFGui.KFQuickPerkSelect;
 
 var CBMSaleList listRef;
 var automated   KFIndexedGUIImage               PerkSelectIcon6;
