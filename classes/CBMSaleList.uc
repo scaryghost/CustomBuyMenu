@@ -14,7 +14,8 @@ event Opened(GUIComponent Sender) {
 }
 
 function UpdateForSaleBuyables() {
-    local int i;
+    local int i, j, min;
+    local GUIBuyable temp;
 
     super.UpdateForSaleBuyables();
     while(i < ForSaleBuyables.Length) {
@@ -24,5 +25,18 @@ function UpdateForSaleBuyables() {
             i++;
         }
     }
+
+    for(i= 0; i < ForSaleBuyables.Length; i++) {
+        min= i;
+        for(j= i + 1; j < ForSaleBuyables.Length; j++) {
+            if (ForSaleBuyables[min].ItemName > ForSaleBuyables[j].ItemName) {
+                min= j;
+            }
+        }
+        temp= ForSaleBuyables[min];
+        ForSaleBuyables[min]= ForSaleBuyables[i];
+        ForSaleBuyables[i]= temp;
+    }
+
     UpdateList();
 }
