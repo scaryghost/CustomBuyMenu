@@ -17,6 +17,8 @@ function InitTabs()
 defaultproperties {
     PanelClass(0)="CustomBuyMenu.BuyMenuTab"
 
+    HeaderBG_Left_Label= None
+
     Begin Object class=PerkFilter Name=QS
 		WinTop=0.011906
 		WinLeft=0.008008
@@ -24,4 +26,16 @@ defaultproperties {
 		WinHeight=0.082460
 	End Object
     QuickPerkSelect=QS
+
+	Begin Object Class=GUILabel Name=Perk
+        WinTop=0.005
+        WinLeft=0.025
+        WinWidth=0.329761
+        WinHeight=0.0500
+		Caption=""
+		TextAlign=TXTA_Center
+		TextFont="UT2MenuFont"
+		TextColor=(R=175,G=176,B=158,A=255)
+	End Object
+	CurrentPerkLabel=Perk
 }
