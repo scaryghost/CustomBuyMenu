@@ -7,7 +7,7 @@ var automated   GUILabel                        WeaponFilterLabel;
 
 function bool InternalOnClick(GUIComponent Sender) {
     if ( Sender.IsA('KFIndexedGUIImage')) {
-        listRef.PlayerVeterancy= class'KFGameType'.default.LoadedSkills[KFIndexedGUIImage(Sender).Index];
+        listRef.FilterVeterancy= class'KFGameType'.default.LoadedSkills[KFIndexedGUIImage(Sender).Index];
     }
     
     return false;   
