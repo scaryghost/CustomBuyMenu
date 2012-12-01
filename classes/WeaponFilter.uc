@@ -40,7 +40,7 @@ function ResizeIcons(Canvas C) {
 defaultproperties {
     Begin Object Class=GUILabel Name=Filter
         WinTop=0.005
-        WinLeft=0.665000
+        WinLeft=0.6690
         WinWidth=0.329761
         WinHeight=0.05
         Caption="Weapon Filters"
@@ -53,7 +53,7 @@ defaultproperties {
     Begin Object class=GUIImage Name=PB0
         WinWidth=0.04
         WinHeight=0.04
-        WinLeft=0.715
+        WinLeft=0.72
         WinTop=0.0504
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -64,7 +64,7 @@ defaultproperties {
     Begin Object class=GUIImage Name=PB1
         WinWidth=0.04
         WinHeight=0.04
-        WinLeft=0.750
+        WinLeft=0.755
         WinTop=0.0504
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -75,7 +75,7 @@ defaultproperties {
     Begin Object class=GUIImage Name=PB2
         WinWidth=0.04
         WinHeight=0.04
-        WinLeft=0.785
+        WinLeft=0.790
         WinTop=0.0504
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -86,7 +86,7 @@ defaultproperties {
     Begin Object class=GUIImage Name=PB3
         WinWidth=0.04
         WinHeight=0.04
-        WinLeft=0.820
+        WinLeft=0.825
         WinTop=0.0504
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -97,7 +97,7 @@ defaultproperties {
     Begin Object class=GUIImage Name=PB4
         WinWidth=0.04
         WinHeight=0.04
-        WinLeft=0.855
+        WinLeft=0.860
         WinTop=0.0504
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -108,7 +108,7 @@ defaultproperties {
     Begin Object class=GUIImage Name=PB5
         WinWidth=0.04
         WinHeight=0.04
-        WinLeft=0.890
+        WinLeft=0.895
         WinTop=0.0504
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -119,7 +119,7 @@ defaultproperties {
     Begin Object class=GUIImage Name=PB6
         WinWidth=0.04
         WinHeight=0.04
-        WinLeft=0.925
+        WinLeft=0.930
         WinTop=0.0504
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -130,7 +130,7 @@ defaultproperties {
     Begin Object class=KFIndexedGUIImage Name=PSI0
         WinWidth=0.040
         WinHeight=0.040
-        WinLeft=0.715
+        WinLeft=0.72
         WinTop=0.0524
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -142,7 +142,7 @@ defaultproperties {
     Begin Object class=KFIndexedGUIImage Name=PSI1
         WinWidth=0.040
         WinHeight=0.040
-        WinLeft=0.750
+        WinLeft=0.755
         WinTop=0.0524
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -154,7 +154,7 @@ defaultproperties {
     Begin Object class=KFIndexedGUIImage Name=PSI2
         WinWidth=0.040
         WinHeight=0.040
-        WinLeft=0.785
+        WinLeft=0.79
         WinTop=0.0524
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -166,7 +166,7 @@ defaultproperties {
     Begin Object class=KFIndexedGUIImage Name=PSI3
         WinWidth=0.040
         WinHeight=0.040
-        WinLeft=0.820
+        WinLeft=0.825
         WinTop=0.0524
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -178,7 +178,7 @@ defaultproperties {
     Begin Object class=KFIndexedGUIImage Name=PSI4
         WinWidth=0.040
         WinHeight=0.040
-        WinLeft=0.855
+        WinLeft=0.86
         WinTop=0.0524
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -190,7 +190,7 @@ defaultproperties {
     Begin Object class=KFIndexedGUIImage Name=PSI5
         WinWidth=0.040
         WinHeight=0.040
-        WinLeft=0.890
+        WinLeft=0.895
         WinTop=0.0524
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
@@ -202,7 +202,7 @@ defaultproperties {
     Begin Object class=KFIndexedGUIImage Name=PSI6
         WinWidth=0.040
         WinHeight=0.040
-        WinLeft=0.925
+        WinLeft=0.93
         WinTop=0.0524
         Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
         ImageStyle=ISTY_Scaled
