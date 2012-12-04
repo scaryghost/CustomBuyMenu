@@ -10,7 +10,7 @@ function bool KeyEvent(EInputKey Key, EInputAction Action, float Delta ) {
     local bool canBuy;
 
     alias= ViewportOwner.Actor.ConsoleCommand("KEYBINDING"@ViewportOwner.Actor.ConsoleCommand("KEYNAME"@Key));
-    if (Action == IST_Press && alias == "use" && !KFGameReplicationInfo(ViewportOwner.Actor.GameReplicationInfo).bWaveInProgress) {
+    if (Action == IST_Press && alias ~= "use" && !KFGameReplicationInfo(ViewportOwner.Actor.GameReplicationInfo).bWaveInProgress) {
         foreach ViewportOwner.Actor.Pawn.TouchingActors(class'ShopVolume', shop) {
             canBuy= true;
         }
