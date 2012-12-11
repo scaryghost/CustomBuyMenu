@@ -3,11 +3,19 @@ class WeaponFilter extends KFGui.KFQuickPerkSelect;
 var CBMSaleList listRef;
 var automated   KFIndexedGUIImage               PerkSelectIcon6;
 var automated   GUIImage                        PerkBack6;
+var automated   KFIndexedGUIImage               PerkSelectIconAll;
+var automated   GUIImage                        PerkBackAll;
 var automated   GUILabel                        WeaponFilterLabel;
+var int allWeaponsIndex;
 
 function bool InternalOnClick(GUIComponent Sender) {
     if ( Sender.IsA('KFIndexedGUIImage')) {
-        listRef.FilterVeterancy= class'KFGameType'.default.LoadedSkills[KFIndexedGUIImage(Sender).Index];
+        if (KFIndexedGUIImage(Sender).Index == allWeaponsIndex) {
+            listRef.FilterVeterancy= class'KFVeterancyTypes';
+        } else {
+            listRef.FilterVeterancy= class'KFGameType'.default.LoadedSkills[KFIndexedGUIImage(Sender).Index];
+        }
+        listRef.Top= 0;
     }
     
     return false;   
@@ -32,6 +40,12 @@ function bool MyOnDraw(Canvas C) {
         setPerkIcon(PerkSelectIcons[i], i);
     }
     setPerkIcon(PerkSelectIcon6, i);
+    PerkSelectIconAll.Index= allWeaponsIndex;
+    if (listRef.FilterVeterancy == class'KFVeterancyTypes') {
+        PerkSelectIconAll.ImageColor.A= 128;
+    } else {
+        PerkSelectIconAll.ImageColor.A= 255;
+    }
 
     return false;
 }
@@ -41,9 +55,13 @@ function ResizeIcons(Canvas C) {
 
     PerkBack6.WinWidth = (C.ClipY / C.ClipX) * BoxSizeX;
     PerkSelectIcon6.WinWidth= (C.ClipY / C.ClipX) * BoxSizeY;
+    PerkBackAll.WinWidth = (C.ClipY / C.ClipX) * BoxSizeX;
+    PerkSelectIconAll.WinWidth= (C.ClipY / C.ClipX) * BoxSizeY;
 }
 
 defaultproperties {
+    allWeaponsIndex= -1
+
     Begin Object Class=GUILabel Name=Filter
         WinTop=0.005
         WinLeft=0.6690
@@ -55,6 +73,17 @@ defaultproperties {
         TextColor=(R=175,G=176,B=158,A=255)
     End Object
     WeaponFilterLabel=Filter
+
+    Begin Object class=GUIImage Name=PBAll
+        WinWidth=0.04
+        WinHeight=0.04
+        WinLeft=0.685
+        WinTop=0.0504
+        Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
+        ImageStyle=ISTY_Scaled
+        Renderweight=0.5
+    End Object
+    PerkBackAll=PBAll
 
     Begin Object class=GUIImage Name=PB0
         WinWidth=0.04
@@ -132,6 +161,18 @@ defaultproperties {
         Renderweight=0.5
     End Object
     PerkBack6=PB6
+
+    Begin Object class=KFIndexedGUIImage Name=PSIAll
+        WinWidth=0.040
+        WinHeight=0.040
+        WinLeft=0.685
+        WinTop=0.0524
+        Image=Texture'KF_InterfaceArt_tex.Menu.Perk_box_unselected'
+        ImageStyle=ISTY_Scaled
+        Renderweight=0.6
+        OnClick=InternalOnClick
+    End Object
+    PerkSelectIconAll=PSIAll
 
     Begin Object class=KFIndexedGUIImage Name=PSI0
         WinWidth=0.040
