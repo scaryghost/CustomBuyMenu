@@ -13,19 +13,25 @@ function bool InternalOnClick(GUIComponent Sender) {
     return false;   
 }
 
+function setPerkIcon(out KFIndexedGUIImage perkImage, int i) {
+    perkImage.Index= i;
+    perkImage.ImageColor.A = 255;
+    if (listRef.FilterVeterancy == class'KFGameType'.default.LoadedSkills[i]) {
+        perkImage.Image= class'KFGameType'.default.LoadedSkills[i].default.OnHUDGoldIcon;
+    } else {
+        perkImage.Image= class'KFGameType'.default.LoadedSkills[i].default.OnHUDIcon;
+    }
+}
+
 function bool MyOnDraw(Canvas C) {
     local int i;
 
     super.MyOnDraw(C);
 
     for (i = 0; i < class'KFGameType'.default.LoadedSkills.Length - 1; i++) {
-        PerkSelectIcons[i].Image = class'KFGameType'.default.LoadedSkills[i].default.OnHUDIcon;
-        PerkSelectIcons[i].Index = i;
-        PerkSelectIcons[i].ImageColor.A = 255;  
+        setPerkIcon(PerkSelectIcons[i], i);
     }
-
-    PerkSelectIcon6.Image= class'KFGameType'.default.LoadedSkills[i].default.OnHUDIcon;
-    PerkSelectIcon6.Index= i;
+    setPerkIcon(PerkSelectIcon6, i);
 
     return false;
 }
