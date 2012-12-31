@@ -1,5 +1,10 @@
 class BuyMenuTab extends KFGui.KFTab_BuyMenu;
 
+function DoBuy() {
+    TheBuyable= SaleSelect.GetSelectedBuyable();
+    super.DoBuy();
+}
+
 defaultproperties {
     Begin Object Class=CBMSaleListBox Name=SaleBox
         OnCreateComponent=SaleBox.InternalOnCreateComponent
