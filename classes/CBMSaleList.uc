@@ -13,6 +13,26 @@ event Opened(GUIComponent Sender) {
     UpdateForSaleBuyables();
 }
 
+function bool lessThan(GUIBuyable left, GUIBUyable right) {
+    local bool leftReqUnlock, leftUnlocked, rightReqUnlock, rightUnlocked, namelessThan;
+
+    leftReqUnlock= left.ItemWeaponClass.Default.UnlockedByAchievement != -1 || left.ItemWeaponClass.Default.AppID > 0;
+    rightReqUnlock= right.ItemWeaponClass.Default.UnlockedByAchievement != -1 || right.ItemWeaponClass.Default.AppID > 0;
+    nameLessThan= left.ItemName < right.ItemName;
+
+    leftUnlocked= KFSteamStatsAndAchievements(PlayerOwner().SteamStatsAndAchievements)
+            .Achievements[left.ItemWeaponClass.Default.UnlockedByAchievement].bCompleted == 1 || 
+            PlayerOwner().SteamStatsAndAchievements.PlayerOwnsWeaponDLC(left.ItemWeaponClass.Default.AppID);
+    rightUnlocked= KFSteamStatsAndAchievements(PlayerOwner().SteamStatsAndAchievements)
+            .Achievements[right.ItemWeaponClass.Default.UnlockedByAchievement].bCompleted == 1 || 
+            PlayerOwner().SteamStatsAndAchievements.PlayerOwnsWeaponDLC(right.ItemWeaponClass.Default.AppID);
+
+    return (!leftReqUnlock && !rightReqUnlock && nameLessThan) || (!leftReqUnlock && rightReqUnlock && !rightUnlocked) || 
+        (leftReqUnlock && leftUnlocked && rightReqUnlock && rightUnlocked && nameLessTHan) || 
+        (!leftReqUnlock && rightReqUnlock && rightUnlocked && nameLessThan) || 
+        (leftReqUnlock && leftUnlocked && !rightUnlocked && nameLessThan);
+}
+
 function UpdateForSaleBuyables() {
     local int i, j, min;
     local GUIBuyable temp;
@@ -30,7 +50,7 @@ function UpdateForSaleBuyables() {
         for(i= 0; i < ForSaleBuyables.Length; i++) {
             min= i;
             for(j= i + 1; j < ForSaleBuyables.Length; j++) {
-                if (ForSaleBuyables[min].ItemName > ForSaleBuyables[j].ItemName) {
+                if (lessThan(ForSaleBuyables[j], ForSaleBuyables[min])) {
                     min= j;
                 }
             }
