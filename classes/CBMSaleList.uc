@@ -13,7 +13,7 @@ event Opened(GUIComponent Sender) {
     UpdateForSaleBuyables();
 }
 
-function bool lessThan(GUIBuyable left, GUIBUyable right) {
+function bool greaterThan(GUIBuyable left, GUIBUyable right) {
     local bool leftReqUnlock, leftUnlocked, rightReqUnlock, rightUnlocked;
 
     leftReqUnlock= left.ItemWeaponClass.Default.UnlockedByAchievement != -1 || left.ItemWeaponClass.Default.AppID > 0;
@@ -25,7 +25,7 @@ function bool lessThan(GUIBuyable left, GUIBUyable right) {
     rightUnlocked= KFSteamStatsAndAchievements(PlayerOwner().SteamStatsAndAchievements)
             .Achievements[right.ItemWeaponClass.Default.UnlockedByAchievement].bCompleted == 1 || 
             PlayerOwner().SteamStatsAndAchievements.PlayerOwnsWeaponDLC(right.ItemWeaponClass.Default.AppID);
-    return !(leftReqUnlock && !leftUnlocked && (!rightReqUnlock || rightReqUnlock && rightUnlocked));
+    return leftReqUnlock && !leftUnlocked && (!rightReqUnlock || rightReqUnlock && rightUnlocked);
 }
 
 function UpdateForSaleBuyables() {
@@ -40,8 +40,8 @@ function UpdateForSaleBuyables() {
         if (ForSaleArrayIndex < ForSaleBuyables.Length) {
             ForSaleBuyables.Remove(ForSaleArrayIndex, ForSaleBuyables.Length);
         }
-        for(i= 0; i < ForSaleBuyables.Length; i++) {
-            for(j= 0; j < tempArray.Length && lessThan(ForSaleBuyables[j], ForSaleBuyables[i]); j++) {
+        for(i= ForSaleBuyables.Length - 1; i >= 0; i--) {
+            for(j= tempArray.Length; j > 0 && !greaterThan(ForSaleBuyables[i], tempArray[j - 1]); j--) {
             }
             tempArray.insert(j, 1);
             tempArray[j]= ForSaleBuyables[i];
