@@ -40,13 +40,13 @@ function UpdateForSaleBuyables() {
         if (ForSaleArrayIndex < ForSaleBuyables.Length) {
             ForSaleBuyables.Remove(ForSaleArrayIndex, ForSaleBuyables.Length);
         }
-        for(i= ForSaleBuyables.Length - 1; i >= 0; i--) {
-            for(j= tempArray.Length; j > 0 && !greaterThan(ForSaleBuyables[i], tempArray[j - 1]); j--) {
-            }
-            tempArray.insert(j, 1);
-            tempArray[j]= ForSaleBuyables[i];
-        }
-        ForSaleBuyables= tempArray;
-        UpdateList();
     }
+    for(i= ForSaleBuyables.Length - 1; i >= 0; i--) {
+        for(j= tempArray.Length; j > 0 && !greaterThan(ForSaleBuyables[i], tempArray[j - 1]); j--) {
+        }
+        tempArray.insert(j, 1);
+        tempArray[j]= ForSaleBuyables[i];
+    }
+    ForSaleBuyables= tempArray;
+    UpdateList();
 }
