@@ -1,24 +1,23 @@
 class CBMSaleList extends KFGui.KFBuyMenuSaleList;
 
-var class<KFVeterancyTypes> FilterVeterancy;
+var class<KFVeterancyTypes> filterVeterancy;
 
 event Opened(GUIComponent Sender) {
     super(GUIVertList).Opened(Sender);
     if ( KFPlayerController(PlayerOwner()) != none && KFPlayerReplicationInfo(PlayerOwner().PlayerReplicationInfo).ClientVeteranSkill != none ) {
-        FilterVeterancy= KFPlayerReplicationInfo(PlayerOwner().PlayerReplicationInfo).ClientVeteranSkill;
+        filterVeterancy= KFPlayerReplicationInfo(PlayerOwner().PlayerReplicationInfo).ClientVeteranSkill;
     }
     else {
-        FilterVeterancy= class'KFVeterancyTypes';
+        filterVeterancy= class'KFVeterancyTypes';
     }
     UpdateForSaleBuyables();
 }
 
 function bool lessThan(GUIBuyable left, GUIBUyable right) {
-    local bool leftReqUnlock, leftUnlocked, rightReqUnlock, rightUnlocked, namelessThan;
+    local bool leftReqUnlock, leftUnlocked, rightReqUnlock, rightUnlocked;
 
     leftReqUnlock= left.ItemWeaponClass.Default.UnlockedByAchievement != -1 || left.ItemWeaponClass.Default.AppID > 0;
     rightReqUnlock= right.ItemWeaponClass.Default.UnlockedByAchievement != -1 || right.ItemWeaponClass.Default.AppID > 0;
-    nameLessThan= left.ItemName < right.ItemName;
 
     leftUnlocked= KFSteamStatsAndAchievements(PlayerOwner().SteamStatsAndAchievements)
             .Achievements[left.ItemWeaponClass.Default.UnlockedByAchievement].bCompleted == 1 || 
@@ -26,38 +25,28 @@ function bool lessThan(GUIBuyable left, GUIBUyable right) {
     rightUnlocked= KFSteamStatsAndAchievements(PlayerOwner().SteamStatsAndAchievements)
             .Achievements[right.ItemWeaponClass.Default.UnlockedByAchievement].bCompleted == 1 || 
             PlayerOwner().SteamStatsAndAchievements.PlayerOwnsWeaponDLC(right.ItemWeaponClass.Default.AppID);
-
-    return (!leftReqUnlock && !rightReqUnlock && nameLessThan) || (!leftReqUnlock && rightReqUnlock && !rightUnlocked) || 
-        (leftReqUnlock && leftUnlocked && rightReqUnlock && rightUnlocked && nameLessTHan) || 
-        (!leftReqUnlock && rightReqUnlock && rightUnlocked && nameLessThan) || 
-        (leftReqUnlock && leftUnlocked && !rightUnlocked && nameLessThan);
+    return !(leftReqUnlock && !leftUnlocked && (!rightReqUnlock || rightReqUnlock && rightUnlocked));
 }
 
 function UpdateForSaleBuyables() {
-    local int i, j, min;
-    local GUIBuyable temp;
+    local int i, j;
+    local int ForSaleArrayIndex;
+    local array<GUIBuyable> tempArray;
 
-    super.UpdateForSaleBuyables();
-    if (FilterVeterancy != class'KFVeterancyTypes') {
-        while(i < ForSaleBuyables.Length) {
-            if (ForSaleBuyables[i].ItemPickupClass.default.CorrespondingPerkIndex != FilterVeterancy.default.PerkIndex) {
-                ForSaleBuyables.remove(i, 1);
-            } else {
-                i++;
-            }
+    if (filterVeterancy == class'KFVeterancyTypes') {
+        super.UpdateForSaleBuyables();
+    } else {
+        ForSaleArrayIndex= PopulateBuyablesByPerk(filterVeterancy.default.PerkIndex, true, 0);
+        if (ForSaleArrayIndex < ForSaleBuyables.Length) {
+            ForSaleBuyables.Remove(ForSaleArrayIndex, ForSaleBuyables.Length);
         }
-
         for(i= 0; i < ForSaleBuyables.Length; i++) {
-            min= i;
-            for(j= i + 1; j < ForSaleBuyables.Length; j++) {
-                if (lessThan(ForSaleBuyables[j], ForSaleBuyables[min])) {
-                    min= j;
-                }
+            for(j= 0; j < tempArray.Length && lessThan(ForSaleBuyables[j], ForSaleBuyables[i]); j++) {
             }
-            temp= ForSaleBuyables[min];
-            ForSaleBuyables[min]= ForSaleBuyables[i];
-            ForSaleBuyables[i]= temp;
+            tempArray.insert(j, 1);
+            tempArray[j]= ForSaleBuyables[i];
         }
+        ForSaleBuyables= tempArray;
+        UpdateList();
     }
-    UpdateList();
 }

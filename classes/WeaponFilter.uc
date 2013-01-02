@@ -11,9 +11,9 @@ var int allWeaponsIndex;
 function bool InternalOnClick(GUIComponent Sender) {
     if ( Sender.IsA('KFIndexedGUIImage')) {
         if (KFIndexedGUIImage(Sender).Index == allWeaponsIndex) {
-            listRef.FilterVeterancy= class'KFVeterancyTypes';
+            listRef.filterVeterancy= class'KFVeterancyTypes';
         } else {
-            listRef.FilterVeterancy= class'KFGameType'.default.LoadedSkills[KFIndexedGUIImage(Sender).Index];
+            listRef.filterVeterancy= class'KFGameType'.default.LoadedSkills[KFIndexedGUIImage(Sender).Index];
         }
         listRef.Top= 0;
     }
@@ -24,7 +24,7 @@ function bool InternalOnClick(GUIComponent Sender) {
 function setPerkIcon(out KFIndexedGUIImage perkImage, int i) {
     perkImage.Index= i;
     perkImage.ImageColor.A = 255;
-    if (listRef.FilterVeterancy == class'KFGameType'.default.LoadedSkills[i]) {
+    if (listRef.filterVeterancy == class'KFGameType'.default.LoadedSkills[i]) {
         perkImage.Image= class'KFGameType'.default.LoadedSkills[i].default.OnHUDGoldIcon;
     } else {
         perkImage.Image= class'KFGameType'.default.LoadedSkills[i].default.OnHUDIcon;
@@ -41,7 +41,7 @@ function bool MyOnDraw(Canvas C) {
     }
     setPerkIcon(PerkSelectIcon6, i);
     PerkSelectIconAll.Index= allWeaponsIndex;
-    if (listRef.FilterVeterancy == class'KFVeterancyTypes') {
+    if (listRef.filterVeterancy == class'KFVeterancyTypes') {
         PerkSelectIconAll.ImageColor.A= 128;
     } else {
         PerkSelectIconAll.ImageColor.A= 255;
