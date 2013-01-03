@@ -8,6 +8,7 @@ function InitTabs() {
         panel= c_Tabs.AddTab(PanelCaption[i], PanelClass[i],, PanelHint[i]);
         if (i == 0) {
             WeaponFilter(QuickPerkSelect).listRef= CBMSaleList(BuyMenuTab(panel).SaleSelect.List);
+            WeaponFilter(QuickPerkSelect).menuTab= KFTab_BuyMenu(panel);
         }
     }
 }

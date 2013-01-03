@@ -1,6 +1,7 @@
 class WeaponFilter extends KFGui.KFQuickPerkSelect;
 
 var CBMSaleList listRef;
+var KFTab_BuyMenu   menuTab;
 var automated   KFIndexedGUIImage               PerkSelectIcon6;
 var automated   GUIImage                        PerkBack6;
 var automated   KFIndexedGUIImage               PerkSelectIconAll;
@@ -16,6 +17,9 @@ function bool InternalOnClick(GUIComponent Sender) {
             listRef.filterVeterancy= class'KFGameType'.default.LoadedSkills[KFIndexedGUIImage(Sender).Index];
         }
         listRef.Top= 0;
+        listRef.Index= -1;
+        menuTab.TheBuyable= None;
+        menuTab.OnAnychange();
     }
     
     return false;   
