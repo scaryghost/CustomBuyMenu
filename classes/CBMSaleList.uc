@@ -24,11 +24,11 @@ function bool greaterThan(GUIBuyable left, GUIBUyable right) {
     leftReqUnlock= left.ItemWeaponClass.Default.UnlockedByAchievement != -1 || left.ItemWeaponClass.Default.AppID > 0;
     rightReqUnlock= right.ItemWeaponClass.Default.UnlockedByAchievement != -1 || right.ItemWeaponClass.Default.AppID > 0;
 
-    leftUnlocked= KFSteamStatsAndAchievements(PlayerOwner().SteamStatsAndAchievements)
-            .Achievements[left.ItemWeaponClass.Default.UnlockedByAchievement].bCompleted == 1 || 
+    leftUnlocked= (left.ItemWeaponClass.Default.UnlockedByAchievement != -1 && KFSteamStatsAndAchievements(PlayerOwner().SteamStatsAndAchievements)
+            .Achievements[left.ItemWeaponClass.Default.UnlockedByAchievement].bCompleted == 1) || 
             PlayerOwner().SteamStatsAndAchievements.PlayerOwnsWeaponDLC(left.ItemWeaponClass.Default.AppID);
-    rightUnlocked= KFSteamStatsAndAchievements(PlayerOwner().SteamStatsAndAchievements)
-            .Achievements[right.ItemWeaponClass.Default.UnlockedByAchievement].bCompleted == 1 || 
+    rightUnlocked= (right.ItemWeaponClass.Default.UnlockedByAchievement != -1 && KFSteamStatsAndAchievements(PlayerOwner().SteamStatsAndAchievements)
+            .Achievements[right.ItemWeaponClass.Default.UnlockedByAchievement].bCompleted == 1) || 
             PlayerOwner().SteamStatsAndAchievements.PlayerOwnsWeaponDLC(right.ItemWeaponClass.Default.AppID);
     return leftReqUnlock && !leftUnlocked && (!rightReqUnlock || rightReqUnlock && rightUnlocked);
 }
