@@ -18,7 +18,6 @@ function bool InternalOnClick(GUIComponent Sender) {
         }
         listRef.Top= 0;
         listRef.Index= -1;
-        listRef.UpdateForSaleBuyables();
         menuTab.TheBuyable= None;
         menuTab.OnAnychange();
     }

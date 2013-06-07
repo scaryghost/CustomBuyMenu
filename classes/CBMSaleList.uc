@@ -1,11 +1,6 @@
 class CBMSaleList extends KFGui.KFBuyMenuSaleList;
 
-var class<KFVeterancyTypes> filterVeterancy;
-
-event InitComponent(GUIController MyController, GUIComponent MyOwner) {
-    super.InitComponent(MyController, MyOwner);
-    SetTimer(0, false);
-}
+var class<KFVeterancyTypes> filterVeterancy, playerVeterancy;
 
 event Opened(GUIComponent Sender) {
     super(GUIVertList).Opened(Sender);
@@ -15,6 +10,7 @@ event Opened(GUIComponent Sender) {
     else {
         filterVeterancy= class'KFVeterancyTypes';
     }
+    playerVeterancy= filterVeterancy;
     UpdateForSaleBuyables();
 }
 
@@ -39,12 +35,14 @@ function UpdateForSaleBuyables() {
     local array<GUIBuyable> tempArray;
 
     if (filterVeterancy == class'KFVeterancyTypes') {
-        super.UpdateForSaleBuyables();
+        ForSaleArrayIndex= PopulateBuyablesByPerk(7, true, 0);
+        ForSaleArrayIndex= PopulateBuyablesByPerk(playerVeterancy.default.PerkIndex, true, ForSaleArrayIndex);
+        ForSaleArrayIndex= PopulateBuyablesByPerk(playerVeterancy.default.PerkIndex, false, ForSaleArrayIndex);
     } else {
         ForSaleArrayIndex= PopulateBuyablesByPerk(filterVeterancy.default.PerkIndex, true, 0);
-        if (ForSaleArrayIndex < ForSaleBuyables.Length) {
-            ForSaleBuyables.Remove(ForSaleArrayIndex, ForSaleBuyables.Length);
-        }
+    }
+    if (ForSaleArrayIndex < ForSaleBuyables.Length) {
+        ForSaleBuyables.Remove(ForSaleArrayIndex, ForSaleBuyables.Length);
     }
     for(i= ForSaleBuyables.Length - 1; i >= 0; i--) {
         for(j= tempArray.Length; j > 0 && !greaterThan(ForSaleBuyables[i], tempArray[j - 1]); j--) {

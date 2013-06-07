@@ -1,8 +1,18 @@
 class BuyMenuTab extends KFGui.KFTab_BuyMenu;
 
-function DoBuy() {
-    TheBuyable= SaleSelect.GetSelectedBuyable();
-    super.DoBuy();
+var bool doubleClick;
+
+function SaleChange(GUIComponent Sender) {
+    if (!doubleClick) {
+        super.SaleChange(SendeR);
+    } else {
+        doubleClick= false;
+    }
+}
+
+function bool SaleDblClick(GUIComponent Sender) {
+    doubleClick= true;
+    return super.SaleDblClick(Sender);
 }
 
 defaultproperties {
