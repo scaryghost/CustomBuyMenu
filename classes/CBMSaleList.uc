@@ -2,6 +2,11 @@ class CBMSaleList extends KFGui.KFBuyMenuSaleList;
 
 var class<KFVeterancyTypes> filterVeterancy;
 
+event InitComponent(GUIController MyController, GUIComponent MyOwner) {
+    super.InitComponent(MyController, MyOwner);
+    SetTimer(0, false);
+}
+
 event Opened(GUIComponent Sender) {
     super(GUIVertList).Opened(Sender);
     if ( KFPlayerController(PlayerOwner()) != none && KFPlayerReplicationInfo(PlayerOwner().PlayerReplicationInfo).ClientVeteranSkill != none ) {
