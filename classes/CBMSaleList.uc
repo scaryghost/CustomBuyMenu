@@ -3,7 +3,6 @@ class CBMSaleList extends KFGui.KFBuyMenuSaleList;
 var class<KFVeterancyTypes> filterVeterancy, playerVeterancy;
 
 event Opened(GUIComponent Sender) {
-    super(GUIVertList).Opened(Sender);
     if ( KFPlayerController(PlayerOwner()) != none && KFPlayerReplicationInfo(PlayerOwner().PlayerReplicationInfo).ClientVeteranSkill != none ) {
         filterVeterancy= KFPlayerReplicationInfo(PlayerOwner().PlayerReplicationInfo).ClientVeteranSkill;
     }
@@ -11,7 +10,7 @@ event Opened(GUIComponent Sender) {
         filterVeterancy= class'KFVeterancyTypes';
     }
     playerVeterancy= filterVeterancy;
-    UpdateForSaleBuyables();
+    super.Opened(Sender);
 }
 
 function bool greaterThan(GUIBuyable left, GUIBUyable right) {

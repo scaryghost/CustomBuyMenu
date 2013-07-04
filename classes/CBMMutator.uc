@@ -21,7 +21,7 @@ simulated function Tick(float DeltaTime) {
 
 defaultproperties {
     GroupName="KFCustomBuyMenu"
-    FriendlyName="Custom Buy Menu v1.2.1"
+    FriendlyName="Custom Buy Menu v1.2.2"
     Description="Filters weapons by perk to reduce the clutter in the trader buy menu"
     
     RemoteRole= ROLE_SimulatedProxy

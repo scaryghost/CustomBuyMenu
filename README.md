@@ -5,7 +5,7 @@ CustomBuyMenu
 Scary Ghost
 
 ## Version
-1.2.1
+1.2.2
 
 ## Install
 Copy the files from the system folder into your Killing Floor system folder
