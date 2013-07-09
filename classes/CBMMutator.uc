@@ -14,7 +14,9 @@ simulated function Tick(float DeltaTime) {
 
     PC= Level.GetLocalPlayerController();
     if (PC != none) {
-        PC.Player.InteractionMaster.AddInteraction("CustomBuyMenu.CBMInteraction", PC.Player);
+        if (KF_StoryGRI(PC.GameReplicationInfo) == none) {
+            PC.Player.InteractionMaster.AddInteraction("CustomBuyMenu.CBMInteractionVanilla", PC.Player);
+        }
     }
     Disable('Tick');
 }
