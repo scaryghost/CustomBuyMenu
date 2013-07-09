@@ -16,6 +16,10 @@ simulated function Tick(float DeltaTime) {
     if (PC != none) {
         if (KF_StoryGRI(PC.GameReplicationInfo) == none) {
             PC.Player.InteractionMaster.AddInteraction("CustomBuyMenu.CBMInteractionVanilla", PC.Player);
+            log("CBMMutator - Using vanilla interaction");
+        } else {
+            PC.Player.InteractionMaster.AddInteraction("CustomBuyMenu.CBMInteraction_Story", PC.Player);
+            log("CBMMutator - Using story interaction");
         }
     }
     Disable('Tick');
@@ -23,7 +27,7 @@ simulated function Tick(float DeltaTime) {
 
 defaultproperties {
     GroupName="KFCustomBuyMenu"
-    FriendlyName="Custom Buy Menu v1.2.2"
+    FriendlyName="Custom Buy Menu v1.3"
     Description="Filters weapons by perk to reduce the clutter in the trader buy menu"
     
     RemoteRole= ROLE_SimulatedProxy
