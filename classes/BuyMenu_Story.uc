@@ -7,8 +7,8 @@ function InitTabs() {
     for ( i = 0; i < PanelCaption.Length && i < PanelClass.Length && i < PanelHint.Length; i++ ) {
         panel= c_Tabs.AddTab(PanelCaption[i], PanelClass[i],, PanelHint[i]);
         if (i == 0) {
-            WeaponFilter(QuickPerkSelect).listRef= CBMSaleList(BuyMenuTab(panel).SaleSelect.List);
-            WeaponFilter(QuickPerkSelect).menuTab= KFTab_BuyMenu(panel);
+            WeaponFilter_Story(QuickPerkSelect).listRef= CBMSaleList_Story(BuyMenuTab_Story(panel).SaleSelect.List);
+            WeaponFilter_Story(QuickPerkSelect).menuTab= KFTab_BuyMenu(panel);
         }
     }
 }
@@ -18,7 +18,7 @@ defaultproperties {
 
     HeaderBG_Left_Label= None
 
-    Begin Object class=WeaponFilter Name=QS
+    Begin Object class=WeaponFilter_Story Name=QS
         WinTop=0.011906
         WinLeft=0.008008
         WinWidth=0.316601
