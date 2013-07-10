@@ -5,7 +5,13 @@ CustomBuyMenu
 Scary Ghost
 
 ## Version
-1.2.2
+1.3
+
+## MD5 Hash
+MD5 hash is generated with: 
+
+    D:\kfdir\System>UCC.exe Editor.CheckSumPackage CustomBuyMenu.u
+    CustomBuyMenu.u checksum: 342e3df0db4d74c7992c11be1bce12d7
 
 ## Install
 Copy the files from the system folder into your Killing Floor system folder
