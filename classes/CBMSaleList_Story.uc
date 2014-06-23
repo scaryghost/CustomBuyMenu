@@ -28,6 +28,7 @@ function bool greaterThan(GUIBuyable left, GUIBUyable right) {
     return leftReqUnlock && !leftUnlocked && (!rightReqUnlock || rightReqUnlock && rightUnlocked);
 }
 
+/*
 function UpdateForSaleBuyables() {
     local int i, j;
     local int ForSaleArrayIndex;
@@ -52,3 +53,4 @@ function UpdateForSaleBuyables() {
     ForSaleBuyables= tempArray;
     UpdateList();
 }
+*/
